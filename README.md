@@ -17,4 +17,33 @@ Apparently there's an "official" way to create an Arch Linux Installer USB drive
 
 ### 1.1 Acquire an installation image
 
-Viait the [Download](https://archlinux.org/download/) page. I am going with the recommended BitTorrent Download using [uTorrent](https://play.google.com/store/apps/details?id=com.utorrent.client&hl=en)(mainly for historical reasons, despite the ads).
+Visit the [Download](https://archlinux.org/download/) page. I am going with the recommended BitTorrent Download using [uTorrent](https://play.google.com/store/apps/details?id=com.utorrent.client&hl=en)(mainly for historical reasons, despite the ads).
+
+### 1.2 Verify signature
+
+This step is recommended plus it's fun to do it on your phone.
+
+I'm using the BLAKE2b checksum verification. [Termux](https://play.google.com/store/apps/details?id=com.termux&hl=en) is the terminal emulator of choice + I find [Coding Keyboard](https://play.google.com/store/apps/details?id=com.ajay.prokeyboard&hl=en) useful.
+
+Download the iso and b2sum.txt(see the link above). The b2sum.txt file contains the sum and the file name. Actually it contains 4 pairs of sums and filenames so expect 3 errors.
+
+Run
+
+```
+pkg update && pkg upgrade
+```
+
+inside Termux for good measure.
+
+Then find the downloaded iso and b2sum.txt. Click open with and choose Termux so they appear in Termux. The two files appeared in ~/downloads for me.
+
+```
+cd downloads
+```
+Both the iso and b2sum.txt should be in the same dir.
+
+Finally check the checksum itself. "OK" is expected on the iso version downloaded and 3 "No such file or directory" errors.
+
+```
+b2sum -c b2sum.txt
+```
