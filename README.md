@@ -47,3 +47,10 @@ Finally check the checksum itself. "OK" is expected on the iso version downloade
 ```
 b2sum -c b2sum.txt
 ```
+
+### 1.3 Prepare an installation medium
+[EtchDroid](https://play.google.com/store/apps/details?id=eu.depau.etchdroid&hl=en) is officially acknowledged in the wiki as an OS image flasher for Android. After checking the sum I used it to create my USB.
+
+https://wiki.archlinux.org/index.php?title=USB_flash_installation_medium&oldid=859741#Using_EtchDroid
+
+
