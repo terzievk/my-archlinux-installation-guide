@@ -136,3 +136,9 @@ Again you can stop it with Ctrl-C.
 More info on iwctl:
 
 https://wiki.archlinux.org/index.php?title=Iwd&oldid=847035#iwctl
+
+### 1.8 Update the system clock
+
+```
+timedatectl
+```
