@@ -71,3 +71,13 @@ I assume bg_bds-utf8 is mine. Load it:
 ```
 loadkeys bg_bds-utf8
 ```
+
+### 1.6 Verify the boot mode
+
+Check the UEFI bitness:
+
+```
+cat /sys/firmware/efi/fw_platform_size
+```
+Expect 64. This confirms the system is booted in 64-bit x64 EUFI.
+
