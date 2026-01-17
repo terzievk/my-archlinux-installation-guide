@@ -53,4 +53,8 @@ b2sum -c b2sum.txt
 
 https://wiki.archlinux.org/index.php?title=USB_flash_installation_medium&oldid=859741#Using_EtchDroid
 
+### 1.4 Boot the live environment
+
+Plug the USB and pray your hardware works.
+
 
