@@ -81,3 +81,58 @@ cat /sys/firmware/efi/fw_platform_size
 ```
 Expect 64. This confirms the system is booted in 64-bit x64 EUFI.
 
+### 1.7 Connect to the internet
+
+I'll use iwctl to connect to my Wi-Fi
+
+To get an interactive prompt:
+
+```
+iwctl
+```
+
+List all Wi-Fi devices:
+
+```
+device list
+```
+
+My device is named wlan0.
+
+Initiate a scan for networks:
+
+```
+station wlan0 scan
+```
+
+List all available networks:
+
+```
+station wlan0 get-networks
+```
+
+To connect:
+
+```
+station wlan0 connect SSID
+```
+
+where SSID is your network name. You'll be prompted for the password.
+
+To exit the iwctl interactive prompt you can go with Ctrl-d, Ctrl-c or just type exit
+
+```
+exit
+```
+
+To check the connection:
+
+```
+ping ping.archlinux.org
+```
+
+Again you can stop it with Ctrl-C.
+
+More info on iwctl:
+
+https://wiki.archlinux.org/index.php?title=Iwd&oldid=847035#iwctl
