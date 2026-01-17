@@ -57,4 +57,17 @@ https://wiki.archlinux.org/index.php?title=USB_flash_installation_medium&oldid=8
 
 Plug the USB and pray your hardware works.
 
+### 1.5 Set the console keyboard layout and font
 
+I guess optional. 
+
+List available layouts:
+
+```
+localectl list-keymaps
+```
+I assume bg_bds-utf8 is mine. Load it:
+
+```
+loadkeys bg_bds-utf8
+```
