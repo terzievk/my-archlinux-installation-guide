@@ -142,3 +142,17 @@ https://wiki.archlinux.org/index.php?title=Iwd&oldid=847035#iwctl
 ```
 timedatectl
 ```
+
+### now the fun part
+partition -> format -> mount 
+
+considerations:
+ - drive preparation (wiping)
+ - drive allignment
+ - sector size (drive + encryption + file settings)
+ - TRIM (pros and cons; consider encryption again) probably
+ - encryption LUKS2
+ - file system btrfs
+ - swap file vs swap partition
+
+
