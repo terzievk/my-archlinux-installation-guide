@@ -144,20 +144,24 @@ timedatectl
 ```
 
 ### 1.9 Partition the disk
-now the fun part
+#### now the fun part
 
 partition -> format -> mount 
 
 plan: full system encryption on rollback capable install with swap partition
+
 by:   LVM on LUKS + btrfs + snapper + grub
 
 why LVM?     I want swap partition
+
 why LUKS?    I want encryption
+
 why btrfs?   I want rollbacks when I brake stuff
+
 why snapper? ?manager for btrfs I guess, not there yet
 
 
-considerations:
+###### considerations:
  - drive preparation (wiping)
  - sector size (drive + encryption + file settings)
  - TRIM (pros and cons; consider encryption again) probably
