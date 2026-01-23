@@ -175,3 +175,11 @@ why snapper? ?manager for btrfs I guess, not there yet
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
 
 https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
+
+## Bonus
+
+### check battery level
+```
+cat /sys/class/power_supply/BAT0/capacity
+```
+
