@@ -196,6 +196,41 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Solid_state_drive/NVMe&oldid=853641#Management
 
+###### Memory cell clearing
+
+You can't just overwrite with 0s and call it a day... 
+
+NVME SSDs usually support two commands - format and sanitize.
+
+In order to verify what is supported by your drive, use the Identify Controller command:
+
+```
+nvme id-ctrl /dev/nvme0 -H | grep -E 'Format |Crypto Erase|Sanitize'
+```
+
+Example output:
+
+```
+  [1:1] : 0x1	Format NVM Supported
+  [29:29] : 0	No-Deallocate After Sanitize bit in Sanitize command Supported
+    [2:2] : 0	Overwrite Sanitize Operation Not Supported
+    [1:1] : 0x1	Block Erase Sanitize Operation Supported
+    [0:0] : 0x1	Crypto Erase Sanitize Operation Supported
+  [2:2] : 0x1	Crypto Erase Supported as part of Secure Erase
+  [1:1] : 0	Crypto Erase Applies to Single Namespace(s)
+  [0:0] : 0	Format Applies to Single Namespace(s)
+```
+
+My ssd supports only format so I'll just format all the namespaces with crypto erase:
+
+```
+nvme format /dev/nvme0 -s 2 -n 0xffffffff
+```
+
+See more at:
+
+https://wiki.archlinux.org/index.php?title=Solid_state_drive/Memory_cell_clearing&oldid=853889#NVMe_drive
+
 ## Bonus
 
 ### check battery level
