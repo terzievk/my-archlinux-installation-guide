@@ -176,6 +176,26 @@ Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TR
 
 https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
 
+##### nvme ssd prep
+
+###### optional drive info and stats
+
+List all the NVMe SSDs attached with name, serial number, size, LBA format and serial:
+
+```
+nvme list
+```
+
+Output the NVMe SMART log page for health status, temp, endurance, and more:
+
+```
+nvme smart-log /dev/nvme0
+```
+
+See more at:
+
+https://wiki.archlinux.org/index.php?title=Solid_state_drive/NVMe&oldid=853641#Management
+
 ## Bonus
 
 ### check battery level
