@@ -251,6 +251,14 @@ My ssd supports only 512B so I'll leave it as is.
 See more at:
 https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#NVMe_solid_state_drives
 
+###### Partition allignment
+
+A typical practice for personal computers is to have **each partition's start and size aligned to 1 MiB (1 048 576 bytes)** marks, as it is divisible by all commonly used  sector sizes—1 MiB, 512 KiB, 128 KiB, 4 KiB, and 512 B.
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
+
 ## Bonus
 
 ### check battery level
