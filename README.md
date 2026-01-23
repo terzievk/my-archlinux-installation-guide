@@ -171,3 +171,7 @@ why snapper? ?manager for btrfs I guess, not there yet
  - drive allignment
  - swap size
 
+###### What's TRIM?
+Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
+
+https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
