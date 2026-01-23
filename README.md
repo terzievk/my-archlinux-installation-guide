@@ -231,6 +231,26 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Solid_state_drive/Memory_cell_clearing&oldid=853889#NVMe_drive
 
+###### Sector size
+
+To check the formatted logical block address size:
+
+```
+nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
+```
+
+Example output:
+
+```
+LBA Format  0 : Metadata Size: 0   bytes - Data Size: 512 bytes - Relative Performance: 0x2 Good (in use)
+LBA Format  1 : Metadata Size: 0   bytes - Data Size: 4096 bytes - Relative Performance: 0x1 Better
+```
+
+My ssd supports only 512B so I'll leave it as is.
+
+See more at:
+https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#NVMe_solid_state_drives
+
 ## Bonus
 
 ### check battery level
