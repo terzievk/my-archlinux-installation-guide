@@ -266,3 +266,8 @@ https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partitio
 cat /sys/class/power_supply/BAT0/capacity
 ```
 
+### see whats writen on the ssd
+```
+hexdump -C /dev/nvme0n1 | less
+```
+
