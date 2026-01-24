@@ -252,7 +252,9 @@ See more at:
 https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#NVMe_solid_state_drives
 
 ###### Allegedly dm-crypt wipe on an empty device or partition
-I tried this. Didn't see any 0s with hexdump(see bonus) during wiping. Seems futile and I can't be bothered to give it any more attention...
+Do this if you have an HDD.
+
+I tried this on my SSD. Didn't see any 0s with hexdump(see bonus) during wiping. Seems futile and I can't be bothered to give it any more attention...
 
 Create a temporary encrypted container:
 
