@@ -294,6 +294,12 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
 
+##### What's Data-at-rest encryption?
+
+For general overview of all encryption topics see:
+
+https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
+
 ## Bonus
 
 ### check battery level
