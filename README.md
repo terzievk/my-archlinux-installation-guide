@@ -144,24 +144,8 @@ timedatectl
 ```
 
 ### 1.9 Partition the disk
-#### now the fun part
 
-partition -> format -> mount 
-
-plan: full system encryption on rollback capable install with swap partition
-
-by:   LVM on LUKS + btrfs + snapper + grub
-
-why LVM?     I want swap partition
-
-why LUKS?    I want encryption
-
-why btrfs?   I want rollbacks when I brake stuff
-
-why snapper? ?manager for btrfs I guess, not there yet
-
-
-##### considerations:
+#### considerations:
  - drive preparation (wiping)
  - sector size (drive + encryption + file settings)
  - TRIM (pros and cons; consider encryption again) probably
@@ -171,14 +155,14 @@ why snapper? ?manager for btrfs I guess, not there yet
  - drive allignment
  - swap size
 
-##### What's TRIM?
+#### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
 
 https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
 
-##### nvme ssd prep
+#### nvme ssd prep
 
-###### optional drive info and stats
+##### optional drive info and stats
 
 List all the NVMe SSDs attached with name, serial number, size, LBA format and serial:
 
@@ -196,7 +180,7 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Solid_state_drive/NVMe&oldid=853641#Management
 
-###### Memory cell clearing
+##### Memory cell clearing
 
 You can't just overwrite with 0s and call it a day... 
 
@@ -231,7 +215,7 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Solid_state_drive/Memory_cell_clearing&oldid=853889#NVMe_drive
 
-###### Sector size
+##### Sector size
 
 To check the formatted logical block address size:
 
@@ -250,6 +234,52 @@ My ssd supports only 512 B so I'll leave it as is.
 
 See more at:
 https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#NVMe_solid_state_drives
+
+
+
+##### Partition allignment
+
+A typical practice for personal computers is to have **each partition's start and size aligned to 1 MiB (1 048 576 bytes)** marks, as it is divisible by all commonly used  sector sizes—1 MiB, 512 KiB, 128 KiB, 4 KiB, and 512 B.
+
+See more at:
+
+https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
+
+#### What's Data-at-rest encryption?
+
+For general overview of all encryption topics see:
+
+https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
+
+## Bonus
+
+### check battery level
+```
+cat /sys/class/power_supply/BAT0/capacity
+```
+
+### see whats writen on the ssd
+```
+hexdump -C /dev/nvme0n1 | less
+```
+
+## Drafts
+
+#### now the fun part
+
+partition -> format -> mount 
+
+plan: full system encryption on rollback capable install with swap partition
+
+by:   LVM on LUKS + btrfs + snapper + grub
+
+why LVM?     I want swap partition
+
+why LUKS?    I want encryption
+
+why btrfs?   I want rollbacks when I brake stuff
+
+why snapper? ?manager for btrfs I guess, not there yet
 
 ###### Allegedly dm-crypt wipe on an empty device or partition
 Do this if you have an HDD.
@@ -285,30 +315,3 @@ cryptsetup close to_be_wiped
 See:
 
 https://wiki.archlinux.org/index.php?title=Dm-crypt/Drive_preparation&oldid=839285#dm-crypt_wipe_on_an_empty_device_or_partition
-
-###### Partition allignment
-
-A typical practice for personal computers is to have **each partition's start and size aligned to 1 MiB (1 048 576 bytes)** marks, as it is divisible by all commonly used  sector sizes—1 MiB, 512 KiB, 128 KiB, 4 KiB, and 512 B.
-
-See more at:
-
-https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
-
-##### What's Data-at-rest encryption?
-
-For general overview of all encryption topics see:
-
-https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
-
-## Bonus
-
-### check battery level
-```
-cat /sys/class/power_supply/BAT0/capacity
-```
-
-### see whats writen on the ssd
-```
-hexdump -C /dev/nvme0n1 | less
-```
-
