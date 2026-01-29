@@ -139,6 +139,25 @@ https://wiki.archlinux.org/index.php?title=Iwd&oldid=847035#iwctl
 
 ### 1.8 Update the system clock
 
+Show the time:
+
+```
+timedatectl
+```
+
+List time zones:
+
+```
+timedatectl list-timezones
+```
+
+My timezone is Europe/Sofia. Set it:
+```
+timedatectl set-timezone Europe/Sofia
+```
+
+Confirm:
+
 ```
 timedatectl
 ```
