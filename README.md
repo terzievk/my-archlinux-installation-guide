@@ -163,25 +163,9 @@ timedatectl
 ```
 
 ### 1.9 Partition the disk
+Prepare the nvme ssd and partition.
 
-#### considerations:
- - drive preparation (wiping)
- - sector size (drive + encryption + file settings)
- - TRIM (pros and cons; consider encryption again) probably
- - encryption LUKS2
- - file system btrfs
- - swap file vs swap partition
- - drive allignment
- - swap size
-
-#### What's TRIM?
-Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
-
-https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
-
-#### nvme ssd prep
-
-##### optional drive info and stats
+#### optional drive info and stats
 
 List all the NVMe SSDs attached with name, serial number, size, LBA format and serial:
 
@@ -199,7 +183,7 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Solid_state_drive/NVMe&oldid=853641#Management
 
-##### Memory cell clearing
+#### Memory cell clearing
 
 You can't just overwrite with 0s and call it a day... 
 
@@ -224,87 +208,18 @@ Example output:
   [0:0] : 0	Format Applies to Single Namespace(s)
 ```
 
-My ssd supports only format so I'll just format all the namespaces with crypto erase:
+My ssd supports only format.
 
+First perform user data erase:
 ```
-nvme format /dev/nvme0 -s 2 -n 0xffffffff
-```
-
-See more at:
-
-https://wiki.archlinux.org/index.php?title=Solid_state_drive/Memory_cell_clearing&oldid=853889#NVMe_drive
-
-##### Sector size
-
-To check the formatted logical block address size:
-
-```
-nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
+nvme format /dev/nvme0 -s 1 -n 0xffffffff
 ```
 
-Example output:
+That for me leaves the ssd 0ed out.
 
-```
-LBA Format  0 : Metadata Size: 0   bytes - Data Size: 512 bytes - Relative Performance: 0x2 Good (in use)
-LBA Format  1 : Metadata Size: 0   bytes - Data Size: 4096 bytes - Relative Performance: 0x1 Better
-```
+Then do a dm encrypt wipe to fill the drive with random data:
 
-My ssd supports only 512 B so I'll leave it as is.
-
-See more at:
-https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#NVMe_solid_state_drives
-
-
-
-##### Partition allignment
-
-A typical practice for personal computers is to have **each partition's start and size aligned to 1 MiB (1 048 576 bytes)** marks, as it is divisible by all commonly used  sector sizes—1 MiB, 512 KiB, 128 KiB, 4 KiB, and 512 B.
-
-See more at:
-
-https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
-
-#### What's Data-at-rest encryption?
-
-For general overview of all encryption topics see:
-
-https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
-
-## Bonus
-
-### check battery level
-```
-cat /sys/class/power_supply/BAT0/capacity
-```
-
-### see whats writen on the ssd
-```
-hexdump -C /dev/nvme0n1 | less
-```
-
-## Drafts
-
-#### now the fun part
-
-partition -> format -> mount 
-
-plan: full system encryption on rollback capable install with swap partition
-
-by:   LVM on LUKS + btrfs + snapper + grub
-
-why LVM?     I want swap partition
-
-why LUKS?    I want encryption
-
-why btrfs?   I want rollbacks when I brake stuff
-
-why snapper? ?manager for btrfs I guess, not there yet
-
-###### Allegedly dm-crypt wipe on an empty device or partition
-Do this if you have an HDD.
-
-I tried this on my SSD. Didn't see any 0s with hexdump(see bonus) during wiping. Seems futile and I can't be bothered to give it any more attention...
-
+#####  dm-crypt wipe on an empty device or partition
 Create a temporary encrypted container:
 
 ```
@@ -334,3 +249,97 @@ cryptsetup close to_be_wiped
 See:
 
 https://wiki.archlinux.org/index.php?title=Dm-crypt/Drive_preparation&oldid=839285#dm-crypt_wipe_on_an_empty_device_or_partition
+
+Finally do a cryptographic erase:
+
+```
+nvme format /dev/nvme0 -s 2 -n 0xffffffff
+```
+
+See more at:
+
+https://wiki.archlinux.org/index.php?title=Solid_state_drive/Memory_cell_clearing&oldid=853889#NVMe_drive
+
+#### Sector size
+
+To check the formatted logical block address size:
+
+```
+nvme id-ns -H /dev/nvme0n1 | grep "Relative Performance"
+```
+
+Example output:
+
+```
+LBA Format  0 : Metadata Size: 0   bytes - Data Size: 512 bytes - Relative Performance: 0x2 Good (in use)
+LBA Format  1 : Metadata Size: 0   bytes - Data Size: 4096 bytes - Relative Performance: 0x1 Better
+```
+
+My ssd supports only 512 B so I'll leave it as is.
+
+See more at:
+https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#NVMe_solid_state_drives
+
+#### Partition allignment
+
+A typical practice for personal computers is to have **each partition's start and size aligned to 1 MiB (1 048 576 bytes)** marks, as it is divisible by all commonly used  sector sizes—1 MiB, 512 KiB, 128 KiB, 4 KiB, and 512 B.
+
+See more at:
+
+https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
+
+
+## Bonus
+
+### check battery level
+```
+cat /sys/class/power_supply/BAT0/capacity
+```
+
+### see whats writen on the ssd
+```
+hexdump -C /dev/nvme0n1 | less
+```
+
+## Drafts
+
+#### What's Data-at-rest encryption?
+
+For general overview of all encryption topics see:
+
+https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
+
+
+#### considerations:
+ - drive preparation (wiping)
+ - sector size (drive + encryption + file settings)
+ - TRIM (pros and cons; consider encryption again) probably
+ - encryption LUKS2
+ - file system btrfs
+ - swap file vs swap partition
+ - drive allignment
+ - swap size
+
+#### What's TRIM?
+Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
+
+https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
+
+
+#### now the fun part
+
+partition -> format -> mount 
+
+plan: full system encryption on rollback capable install with swap partition
+
+by:   LVM on LUKS + btrfs + snapper + grub
+
+why LVM?     I want swap partition
+
+why LUKS?    I want encryption
+
+why btrfs?   I want rollbacks when I brake stuff
+
+why snapper? ?manager for btrfs I guess, not there yet
+
+
