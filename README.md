@@ -288,6 +288,30 @@ See more at:
 
 https://wiki.archlinux.org/index.php?title=Advanced_Format&oldid=857461#Partition_alignment
 
+#### partitioning
+just use the defaults, when in doubt press m for help:
+
+```
+fdisk /dev/nvme0n1
+m // help
+g // new gpt partition fable
+n // new partition /boot
+Enter
+Enter
++1G // make it 1GiB
+n
+Enter
+Enter
+Enter
+t // change the type of // boot
+1
+1 // EFIBsystem
+t // change the type of /root
+2
+23 // Linux root (x86-64)
+p // print the partition gable
+w // write to disk and exit
+```
 
 ## Bonus
 
