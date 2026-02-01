@@ -163,7 +163,7 @@ timedatectl
 ```
 
 ### 1.9 Partition the disk
-Long the general installation guide follow the guidelines for LUKS on partition:
+Along the general installation guide follow the guidelines for LUKS on partition:
 
 https://wiki.archlinux.org/index.php?title=Dm-crypt/Encrypting_an_entire_system&oldid=863473#LUKS_on_a_partition
 
