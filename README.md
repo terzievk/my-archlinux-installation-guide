@@ -367,6 +367,20 @@ cryptsetup open /dev/nvmen0p2 root
 mount /dev/mapper/root /mnt
 ```
 
+#### preparing the boot partition
+
+Format:
+
+```
+mkfs.fat -F32 /dev/nvmen0p1
+```
+
+Mount:
+
+```
+mount --mkdir /dev/nvmen0p1 /mnt/boot
+```
+
 ## Bonus
 
 ### check battery level
