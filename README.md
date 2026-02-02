@@ -317,6 +317,56 @@ p // print the partition gable
 w // write to disk and exit
 ```
 
+#### Preparing the root partition
+
+Before running the cryptsetup command you can benchmark the different algorithms:
+
+```
+cryptsetup benchmark
+```
+
+Notice how AES is considerably faster. One could confirm the CPU is optimized for the AES instruction set with:
+
+```
+lscpu
+```
+
+where one of the flags is AES.
+
+To see more and see examples of encryption options see:
+
+https://wiki.archlinux.org/index.php?title=Dm-crypt/Device_encryption&oldid=846907#Cryptsetup_usage
+
+Encrypt the root partition:
+```
+cryptsetup -v luksFormat --type luks2 --cipher aes-xts-plain64 --hash sha512 --iter-time 5000 --key-size 512 --pbkdf argon2id --use-urandom --verify-passphrase /dev/nvmen0p2
+```
+Where -v is for verbose; the hash is bumped to sha512; key size is increased to 512 as well and iter time is set to 5s (each time you enter the passphrase it takes 5 seconds to unlock)
+
+Open the root partition:
+```
+cryptsetup open /dev/nvmen0p2 root
+```
+
+Create an ext4 file system:
+```
+mkfs.ext4 /dev/mapper/root
+```
+
+Mount the root partition:
+```
+mount /dev/mapper/root /mnt
+```
+
+Check the mapping works as intended:
+
+```
+umount /mnt
+cryptsetup close root
+cryptsetup open /dev/nvmen0p2 root
+mount /dev/mapper/root /mnt
+```
+
 ## Bonus
 
 ### check battery level
