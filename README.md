@@ -339,13 +339,13 @@ https://wiki.archlinux.org/index.php?title=Dm-crypt/Device_encryption&oldid=8469
 
 Encrypt the root partition:
 ```
-cryptsetup -v luksFormat --type luks2 --cipher aes-xts-plain64 --hash sha512 --iter-time 5000 --key-size 512 --pbkdf argon2id --use-urandom --verify-passphrase /dev/nvmen0p2
+cryptsetup -v luksFormat --type luks2 --cipher aes-xts-plain64 --hash sha512 --iter-time 5000 --key-size 512 --pbkdf argon2id --use-urandom --verify-passphrase /dev/nvme0n1p2
 ```
 Where -v is for verbose; the hash is bumped to sha512; key size is increased to 512 as well and iter time is set to 5s (each time you enter the passphrase it takes 5 seconds to unlock)
 
 Open the root partition:
 ```
-cryptsetup open /dev/nvmen0p2 root
+cryptsetup open /dev/nvme0n1p2 root
 ```
 
 Create an ext4 file system:
@@ -363,7 +363,7 @@ Check the mapping works as intended:
 ```
 umount /mnt
 cryptsetup close root
-cryptsetup open /dev/nvmen0p2 root
+cryptsetup open /dev/nvme0n1p2 root
 mount /dev/mapper/root /mnt
 ```
 
@@ -372,13 +372,13 @@ mount /dev/mapper/root /mnt
 Format:
 
 ```
-mkfs.fat -F32 /dev/nvmen0p1
+mkfs.fat -F32 /dev/nvme0n1p1
 ```
 
 Mount:
 
 ```
-mount --mkdir /dev/nvmen0p1 /mnt/boot
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ```
 
 ## Bonus
