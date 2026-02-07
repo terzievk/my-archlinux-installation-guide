@@ -389,6 +389,22 @@ Mount:
 mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ```
 
+## Installation
+
+### Select the mirrors
+
+Default should be fine. I bumped up the Bulgaria mirrors just below the Worldwide. 
+
+Open the file with your editor of choice. Second best is just fine:
+
+```
+vim /etc/pacman.d/mirrorlist
+```
+
+For a great config of the best text editor see mine at:
+
+https://github.com/terzievk/.emacs.d
+
 ## Bonus
 
 ### check battery level
