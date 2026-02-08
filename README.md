@@ -488,6 +488,26 @@ LANG=en_US.UTF-8
 
 Leave the console keyboard layout to the default us.
 
+### 3.5 Network configuration 
+
+Assign name to your system:
+
+```
+vim /etc/hostname
+
+[hostname]
+```
+
+Enable NetworkManager:
+
+```
+systemctl enable NetworkManager.service
+```
+
+See:
+
+https://wiki.archlinux.org/index.php?title=NetworkManager&oldid=861155#Enable_NetworkManager
+
 ## Bonus
 
 ### check battery level
