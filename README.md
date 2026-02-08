@@ -458,6 +458,36 @@ Run hwclock to set /etc/adjtime:
 hwclock --systohc
 ```
 
+### 3.4 Localization 
+
+Open /etc/locale.gen:
+
+```
+vim /etc/locale.gen
+```
+
+and uncomment _bg_BG.UTF-8 UTF-8_ and _en_US.UTF-8 UTF-8_ (commonly used as fallback for various tools)
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Locale&oldid=841157#Generating_locales
+
+Generate the locales:
+
+```
+locale-gen
+```
+
+Create the locale conf file and set Lang:
+
+```
+vim /etc/locale.conf
+
+LANG=en_US.UTF-8
+```
+
+Leave the console keyboard layout to the default us.
+
 ## Bonus
 
 ### check battery level
