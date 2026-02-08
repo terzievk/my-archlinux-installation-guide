@@ -581,6 +581,19 @@ Dont forget to generate grub.conf:
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+## 4 Reboot
+Exit chroot:
+
+```
+exit
+```
+
+Reboot:
+
+```
+reboot
+```
+
 ## Bonus
 
 ### check battery level
