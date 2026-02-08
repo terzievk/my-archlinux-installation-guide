@@ -537,6 +537,45 @@ Set root password:
 passwd
 ```
 
+### boot loader
+I'll use GRUB. See:
+
+https://wiki.archlinux.org/index.php?title=GRUB&oldid=862736
+
+First install it:
+
+```
+pacman -Syu grub efibootmgr
+```
+
+Then install GRUB to the disk:
+```
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+```
+
+Where efi-directory is /boot and not /mnt/boot because we are still chrooted in /mnt as root.
+
+Then we need to add the dm-encrypt specifics. See:
+
+https://wiki.archlinux.org/index.php?title=Dm-crypt/Encrypting_an_entire_system&oldid=863473#Configuring_the_boot_loader
+
+We need to set "rd.luks.name=device-UUID=root root=/dev/mapper/root" in GRUB settings but first we need the /dev/nvme0n1p2 UUID.
+
+We could use "blkid" and rewrite it or we can be fancy and use "blkid -s UUID -o value /dev/nvme0n1p2 and get just the UUID or we can be even fancier and directly append it in the GRUB config file like so:
+
+```
+blkid -s UUID -o value /dev/nvme0n1p2 >> /etc/default/grub
+```
+
+And now open with vim:
+
+```
+vim /etc/default/grub
+```
+
+And add "rd.luks.name=device-UUID=root root=/dev/mapper/root" to the quotes in GRUB_CMDLINE_LINUX_DEFAULT, where UUID is appened at the bottom of the config file (just copy it not to type it and delete it from there lol)
+
 
 ## Bonus
 
