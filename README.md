@@ -518,7 +518,11 @@ HOOKS=(base systemd autodetect microcode modconf kms keyboard keymap block sd-en
 
 Make sure to have keyboard and sd-encrypt hooks for the dm-encrypt setup. Also since I skipped creating the vsconsole above I removed the sd-vsconsole hook not to get an error for missing file when generating the initramfs. See:
 
+https://wiki.archlinux.org/index.php?title=Dm-crypt/Encrypting_an_entire_system&oldid=863473#Configuring_mkinitcpio
+
 Make sure to have microcode for the CPU microcode. See:
+
+https://wiki.archlinux.org/index.php?title=Microcode&oldid=848303#mkinitcpio
 
 Generate the initramfs:
 
