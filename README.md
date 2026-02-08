@@ -417,6 +417,23 @@ Besides the recommended _base_, _linux_ and _linux-firmware_ I'm installing:
 - vim for easy file editing
 - ranger for easy file system navigation
 
+## 3 Configure the system
+
+### 3.1 Fstab
+
+Generate the fstab:
+
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+Check the result:
+
+```
+vim /mnt/etc/fstab
+```
+
+You should find 1 line for /root and 1 for /boot
 
 ## Bonus
 
