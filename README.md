@@ -576,6 +576,10 @@ vim /etc/default/grub
 
 And add "rd.luks.name=device-UUID=root root=/dev/mapper/root" to the quotes in GRUB_CMDLINE_LINUX_DEFAULT, where UUID is appened at the bottom of the config file (just copy it not to type it and delete it from there lol)
 
+Dont forget to generate grub.conf:
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 ## Bonus
 
