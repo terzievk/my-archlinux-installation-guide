@@ -389,9 +389,9 @@ Mount:
 mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ```
 
-## Installation
+## 2 Installation
 
-### Select the mirrors
+### 2.1 Select the mirrors
 
 Default should be fine. I bumped up the Bulgaria mirrors just below the Worldwide. 
 
@@ -404,6 +404,19 @@ vim /etc/pacman.d/mirrorlist
 For a great config of the best text editor see mine at:
 
 https://github.com/terzievk/.emacs.d
+
+
+### 2.2 Install essential packages
+```
+pacstrap -K /mnt base linux linux-firmware intel-ucode networkmanager vim ranger
+```
+
+Besides the recommended _base_, _linux_ and _linux-firmware_ I'm installing:
+- intel-ucode for CPU microcode updates
+- networkmanager for WiFi
+- vim for easy file editing
+- ranger for easy file system navigation
+
 
 ## Bonus
 
