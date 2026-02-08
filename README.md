@@ -443,6 +443,21 @@ Change root into the new system:
 arch-chroot /mnt
 ```
 
+### 3.3 Time
+
+Set the timezone:
+
+```
+ln -sf /usr/share/zoneinfo/Europe/Sofia /etc/localtime
+```
+Tip: use TAB to find your Area and Location above
+
+Run hwclock to set /etc/adjtime:
+
+```
+hwclock --systohc
+```
+
 ## Bonus
 
 ### check battery level
