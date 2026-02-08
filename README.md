@@ -508,6 +508,24 @@ See:
 
 https://wiki.archlinux.org/index.php?title=NetworkManager&oldid=861155#Enable_NetworkManager
 
+### 3.6 Initramfs
+
+Modify the mkinitcpio file(edit the HOOKS):
+
+```
+HOOKS=(base systemd autodetect microcode modconf kms keyboard keymap block sd-encrypt filesystems fsck)
+```
+
+Make sure to have keyboard and sd-encrypt hooks for the dm-encrypt setup. Also since I skipped creating the vsconsole above I removed the sd-vsconsole hook not to get an error for missing file when generating the initramfs. See:
+
+Make sure to have microcode for the CPU microcode. See:
+
+Generate the initramfs:
+
+```
+mkinitcpio -P
+```
+
 ## Bonus
 
 ### check battery level
