@@ -530,6 +530,14 @@ Generate the initramfs:
 mkinitcpio -P
 ```
 
+### 3.7 Root password 
+
+Set root password:
+```
+passwd
+```
+
+
 ## Bonus
 
 ### check battery level
