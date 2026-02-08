@@ -435,6 +435,14 @@ vim /mnt/etc/fstab
 
 You should find 1 line for /root and 1 for /boot
 
+### 3.2 Chroot
+
+Change root into the new system:
+
+```
+arch-chroot /mnt
+```
+
 ## Bonus
 
 ### check battery level
