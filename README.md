@@ -632,6 +632,66 @@ After reboot WiFi should be auto connected. Check with ping again:
 ping.archlinux.org
 ```
 
+## 5 Post installation
+
+I'll be following the official General recommendations:
+
+https://wiki.archlinux.org/index.php?title=General_recommendations&oldid=863442
+
+### 5.1 System administration
+
+### 5.1.1 Users and groups
+Create an user and add him to the wheel group:
+
+```
+useradd -m -G wheel [username]
+```
+
+And immediately set password:
+```
+passwd [username]
+```
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Users_and_groups&oldid=863817#User_management
+
+The wheel group is the group of users that historically is given sudo rights.
+
+First install sudo and vi(_visudo_ is recommended to edit sudo configs and it needs vi):
+
+```
+pacman -Syu sudo vi
+```
+
+Then create the config file:
+
+```
+visudo /etc/sudoers.d/10-wheel
+```
+
+and add the configuration as follows:
+
+```
+%wheel  ALL=(ALL:ALL) ALL
+
+```
+Tip: use TAB after %wheel
+
+Tip2: end on a new line
+
+Finally reboot:
+
+```
+reboot
+```
+
+After reboot you can confirm your home folder:
+
+```
+pwd
+```
+
 ## Bonus
 
 ### check battery level
