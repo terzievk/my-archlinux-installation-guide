@@ -503,7 +503,7 @@ Enable NetworkManager:
 ```
 systemctl enable NetworkManager.service
 ```
-
+Since systemd services can't be started in chroot, the WiFi connection will be done after the reboot(see 4 Reboot).
 See:
 
 https://wiki.archlinux.org/index.php?title=NetworkManager&oldid=861155#Enable_NetworkManager
@@ -592,6 +592,40 @@ Reboot:
 
 ```
 reboot
+```
+
+### Connect to the WiFi
+
+The Network Manager service is already started. Just open the tui and set it up:
+
+```
+nmtui
+```
+
+Tip: use arrows and escape
+
+Ping:
+
+```
+ping ping.archlinux.org
+```
+
+update for good measure:
+
+```
+pacman -Syu
+```
+
+Reboot:
+
+```
+reboot
+```
+
+After reboot WiFi should be auto connected. Check with ping again:
+
+```
+ping.archlinux.org
 ```
 
 ## Bonus
