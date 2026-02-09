@@ -568,6 +568,10 @@ We could use "blkid" and rewrite it or we can be fancy and use "blkid -s UUID -o
 blkid -s UUID -o value /dev/nvme0n1p2 >> /etc/default/grub
 ```
 
+The blkid idea I got from:
+
+https://www.thetestspecimen.com/posts/arch-install/
+
 And now open with vim:
 
 ```
