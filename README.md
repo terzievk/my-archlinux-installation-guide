@@ -408,7 +408,7 @@ https://github.com/terzievk/.emacs.d
 
 ### 2.2 Install essential packages
 ```
-pacstrap -K /mnt base linux linux-firmware intel-ucode networkmanager vim ranger
+pacstrap -K /mnt base linux linux-firmware intel-ucode networkmanager vim ranger man-db less
 ```
 
 Besides the recommended _base_, _linux_ and _linux-firmware_ I'm installing:
@@ -416,6 +416,8 @@ Besides the recommended _base_, _linux_ and _linux-firmware_ I'm installing:
 - networkmanager for WiFi
 - vim for easy file editing
 - ranger for easy file system navigation
+- man-db for man pages
+- less for viewing files or long outputs (command | less)
 
 ## 3 Configure the system
 
