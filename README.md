@@ -731,17 +731,71 @@ See:
 
 https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Denying_SSH_login
 
+#### Firewall
 
+For general firewall security recommendation see:
 
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Firewalls
 
+I'll be setting up a nftables firewall, see:
 
+https://wiki.archlinux.org/index.php?title=Nftables&oldid=862787
 
+My current config is allow all outgoing and block all incoming for IPv4 and IPv6, see: 
 
+https://wiki.nftables.org/wiki-nftables/index.php/Simple_ruleset_for_a_workstation
 
+First install nftables:
 
+```
+sudo pacman -Syu nftables
+```
 
+Enable the service:
 
+```
+systemctl enable nftables.service
+```
 
+Edit the config:
+
+```
+sudo vim /etc/nftables.conf
+```
+
+Where you delete the default config and add the following:
+
+```
+flush ruleset
+
+table inet filter {
+        chain input {
+                 type filter hook input priority 0; policy drop;
+
+                 # accept any localhost traffic
+                 iif lo accept
+
+                 # accept traffic originated from us
+                 ct state established,related accept
+
+                 # accept neighbour discovery otherwise IPv6 connectivity breaks
+                 icmpv6 type { nd-neighbor-solicit, nd-router-advert, nd-neighbor-advert } accept
+
+        }
+}
+```
+
+Finally reboot:
+
+```
+reboot
+```
+
+Confirm the config is loaded:
+
+```
+sudo ntf list ruleset
+```
 
 
 
