@@ -723,8 +723,13 @@ See:
 
 https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Restricting_root_login
 
+#### Denying SSH login
 
+Generally denying ssh login is recommended but you don't need to especially when you don't have ssh installed and/or running.
 
+See:
+
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Denying_SSH_login
 
 
 
