@@ -692,6 +692,24 @@ After reboot you can confirm your home folder:
 pwd
 ```
 
+### 5.1.2 Security
+
+Main article:
+
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044
+
+#### Hardware vulnerabilities
+
+If you're curious you can check your CPU hardware vulnerabilities:
+
+```
+grep -r . /sys/devices/system/cpu/vulnerabilities/
+```
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Hardware_vulnerabilities
+
 ## Bonus
 
 ### check battery level
