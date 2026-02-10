@@ -840,38 +840,9 @@ For general overview of all encryption topics see:
 https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
 
 
-#### considerations:
- - drive preparation (wiping)
- - sector size (drive + encryption + file settings)
- - TRIM (pros and cons; consider encryption again) probably
- - encryption LUKS2
- - file system btrfs
- - swap file vs swap partition
- - drive allignment
- - swap size
-
 #### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
 - delete or empty the file /run/faillock/[your-username-here]
 - reboot (not a security consern 
 
 https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
-
-
-#### now the fun part
-
-partition -> format -> mount 
-
-plan: full system encryption on rollback capable install with swap partition
-
-by:   LVM on LUKS + btrfs + snapper + grub
-
-why LVM?     I want swap partition
-
-why LUKS?    I want encryption
-
-why btrfs?   I want rollbacks when I brake stuff
-
-why snapper? ?manager for btrfs I guess, not there yet
-
-
