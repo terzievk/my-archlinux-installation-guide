@@ -710,6 +710,44 @@ See:
 
 https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Hardware_vulnerabilities
 
+#### Restricting root login
+Make sure sudonis configured properly first. Then:
+
+```
+passwd --lock root
+```
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Restricting_root_login
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Bonus
 
 ### check battery level
