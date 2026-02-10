@@ -821,6 +821,16 @@ cat /sys/class/power_supply/BAT0/capacity
 hexdump -C /dev/nvme0n1 | less
 ```
 
+### Bypass lock out after 3 login attempts
+
+We all have bad days and sometimes that sudo password hungry command can drive us crazy. By default there are two ways to bypass:
+- delete or empty the file ```/run/faillock/[your-username-here]```
+- reboot (not a security concern since the full-disk encryption is set up)
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Lock_out_user_after_three_failed_login_attempts
+
 ## Drafts
 
 #### What's Data-at-rest encryption?
@@ -842,6 +852,8 @@ https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
 
 #### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
+- delete or empty the file /run/faillock/[your-username-here]
+- reboot (not a security consern 
 
 https://www.thessdreview.com/daily-news/latest-buzz/garbage-collection-and-trim-in-ssds-explained-an-ssd-primer/
 
