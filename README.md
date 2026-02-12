@@ -797,8 +797,24 @@ Confirm the config is loaded:
 sudo ntf list ruleset
 ```
 
+## GUI
 
+Finally you might need some GUI. If you don't have a riced up config laying around and need to get some work done quick gnome is the good old friend for the job.
 
+Install gnome:
+
+```
+sudo pacman -Syu gnome gnome-extra
+```
+
+Enable the service:
+
+```
+systemctl enable --now gdm
+```
+
+-- now also starts the service
+systemctl auto appends .service so gdm is actually gdm service
 
 
 
