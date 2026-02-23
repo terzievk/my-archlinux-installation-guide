@@ -725,7 +725,17 @@ https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Restricting_roo
 
 #### Denying SSH login
 
-Generally denying ssh login is recommended but you don't need to especially when you don't have ssh installed and/or running.
+Generally denying ssh login is recommended.
+
+Add the following settings to the ```/etc/ssh/sshd_config```
+```
+PermitEmptyPasswords no
+PasswordAuthentication no
+AuthenticationMethods publickey
+PermitRootLogin no
+```
+
+Note: ssh_config and sshd_config are different things(d stands for daemon).
 
 See:
 
