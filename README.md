@@ -857,6 +857,16 @@ See:
 
 https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Lock_out_user_after_three_failed_login_attempts
 
+### Gnome wayland repeay and delay
+The wayland gnome equivalent of the xorg repeat and delay I like:
+```
+xset r rate 160 100
+```
+is:
+```
+gsettings set org.gnome.desktop.peripherals.keyboard delay 160
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
+```
 ## Drafts
 
 #### What's Data-at-rest encryption?
