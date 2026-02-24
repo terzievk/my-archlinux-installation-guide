@@ -865,6 +865,20 @@ For general overview of all encryption topics see:
 
 https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
 
+## Essentials
+
+### AUR helper yay
+
+To install yay:
+
+```
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si
+
+```
+
+See:
+
+https://github.com/Jguer/yay
 
 #### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
