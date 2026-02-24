@@ -890,6 +890,50 @@ See:
 
 https://github.com/Jguer/yay
 
+### Connecting to GitHub with SSH
+For general overview see:
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+
+#### Generating a new SSH key
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+See:
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key
+
+#### Adding your ssh key to the ssh agent
+Start the SSH agent in the background:
+```
+eval "$(ssh-agent -s)"
+```
+Add the key:
+
+```
+ssh-add ~/.ssh/id_ed25519
+```
+See:
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+
+#### Adding a new SSH key to your github account
+Copy the key:
+
+```
+cat ~/.ssh/id_ed25519.pub
+```
+
+Tip: you need the public key - the *.pub one
+
+And paste it in the github setting.
+
+See:
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account
+
+
 #### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
 - delete or empty the file /run/faillock/[your-username-here]
