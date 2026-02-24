@@ -933,6 +933,34 @@ See:
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account#adding-a-new-ssh-key-to-your-account
 
+#### Testing your SSH connection
+```
+ssh -T git@github.com
+```
+
+See:
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection
+
+#### You`ll be prompted eventually but set username and email
+Set email:
+```
+git config --global user.email "YOUR_EMAIL"
+```
+
+See:
+
+https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address#setting-your-email-address-for-every-repository-on-your-computer
+
+Set username:
+
+```
+git config --global user.name "Mona Lisa"
+```
+
+See:
+
+https://docs.github.com/en/get-started/git-basics/setting-your-username-in-git#setting-your-git-username-for-every-repository-on-your-computer
 
 #### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
