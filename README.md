@@ -826,55 +826,6 @@ systemctl enable --now gdm
 -- now also starts the service
 systemctl auto appends .service so gdm is actually gdm service
 
-
-
-
-
-
-
-
-
-
-## Bonus
-
-### check battery level
-```
-cat /sys/class/power_supply/BAT0/capacity
-```
-
-### see whats writen on the ssd
-```
-hexdump -C /dev/nvme0n1 | less
-```
-
-### Bypass lock out after 3 login attempts
-
-We all have bad days and sometimes that sudo password hungry command can drive us crazy. By default there are two ways to bypass:
-- delete or empty the file ```/run/faillock/[your-username-here]```
-- reboot (not a security concern since the full-disk encryption is set up)
-
-See:
-
-https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Lock_out_user_after_three_failed_login_attempts
-
-### Gnome wayland repeay and delay
-The wayland gnome equivalent of the xorg repeat and delay I like:
-```
-xset r rate 160 100
-```
-is:
-```
-gsettings set org.gnome.desktop.peripherals.keyboard delay 160
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
-```
-## Drafts
-
-#### What's Data-at-rest encryption?
-
-For general overview of all encryption topics see:
-
-https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
-
 ## Essentials
 
 ### AUR helper yay
@@ -961,6 +912,46 @@ git config --global user.name "Mona Lisa"
 See:
 
 https://docs.github.com/en/get-started/git-basics/setting-your-username-in-git#setting-your-git-username-for-every-repository-on-your-computer
+
+## Bonus
+
+### check battery level
+```
+cat /sys/class/power_supply/BAT0/capacity
+```
+
+### see whats writen on the ssd
+```
+hexdump -C /dev/nvme0n1 | less
+```
+
+### Bypass lock out after 3 login attempts
+
+We all have bad days and sometimes that sudo password hungry command can drive us crazy. By default there are two ways to bypass:
+- delete or empty the file ```/run/faillock/[your-username-here]```
+- reboot (not a security concern since the full-disk encryption is set up)
+
+See:
+
+https://wiki.archlinux.org/index.php?title=Security&oldid=863044#Lock_out_user_after_three_failed_login_attempts
+
+### Gnome wayland repeay and delay
+The wayland gnome equivalent of the xorg repeat and delay I like:
+```
+xset r rate 160 100
+```
+is:
+```
+gsettings set org.gnome.desktop.peripherals.keyboard delay 160
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 10
+```
+## Drafts
+
+#### What's Data-at-rest encryption?
+
+For general overview of all encryption topics see:
+
+https://wiki.archlinux.org/index.php?title=Data-at-rest_encryption&oldid=857790
 
 #### What's TRIM?
 Here is a good resource to learn about SSD pages, blocks, Garbage Collection, TRIM and the difference between the last two:
